@@ -1,0 +1,8 @@
+{
+  "name": "Umkm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "8096be27"
+}
