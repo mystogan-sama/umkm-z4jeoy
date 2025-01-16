@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'display',
+    loadChildren: () => import('./display/display.module').then( m => m.DisplayPageModule)
   }
 ];
 @NgModule({

@@ -6,7 +6,7 @@ import { initializeApp } from 'firebase/app';
 import { getDatabase } from 'firebase/database';
 
 export const environment = {
-  production: false,
+  production: true,
   firebase: {
     apiKey: "AIzaSyDVrUS0obDI_I7CHC7dlqQ3xCP6FUQaV1E",
     authDomain: "joybow-project.firebaseapp.com",

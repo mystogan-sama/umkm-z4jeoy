@@ -33,5 +33,43 @@
  */
 
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import "@ionic/angular/css/palettes/dark.system.css";
+@import "@ionic/angular/css/palettes/dark.class.css";
+// @import "@ionic/angular/css/palettes/dark.system.css";
+
+/* (Optional) This is added to prevent the flashing that happens when toggling between palettes */
+ion-item {
+    --transition: none;
+}
+
+:root {
+    --ion-background-color: #ffffff;
+    --ion-text-color: #000000;
+}
+
+.ion-palette-dark {
+    --ion-background-color: #000000;
+    --ion-text-color: #ffffff;
+}
+
+.custom-title {
+    color: var(--ion-text-color);
+    /* Warna default berdasarkan tema */
+
+    /* Jika mode dark off, atur menjadi putih */
+    :host-context([color-scheme="light"]) & {
+        color: white;
+    }
+}
+
+.custom-toast {
+    --background: var(--ion-color-primary);
+    /* Warna background default */
+    --color: var(--ion-text-color);
+    /* Warna teks sesuai tema */
+
+    /* Atur warna teks saat light mode */
+    :host-context([color-scheme="light"]) & {
+        --color: white;
+        /* Warna teks menjadi putih */
+    }
+}
