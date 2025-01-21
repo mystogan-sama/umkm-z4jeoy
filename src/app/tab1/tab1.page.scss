@@ -12,3 +12,16 @@ ion-button#more-options {
   
     box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
   }
+
+.custom-toast {
+    --background: var(--ion-color-primary);
+    /* Warna background default */
+    --color: var(--ion-text-color);
+    /* Warna teks sesuai tema */
+
+    /* Atur warna teks saat light mode */
+    :host-context([color-scheme="light"]) & {
+        --text: white;
+        /* Warna teks menjadi putih */
+    }
+}

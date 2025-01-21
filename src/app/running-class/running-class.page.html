@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Tambah Data</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Tambah Kelas Berjalan</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form (ngSubmit)="onSubmit()">
+              <!-- Input LocalId -->
+              <ion-item [ngClass]="{ 'hidden': isHidden }">
+                <ion-label position="stacked">User ID</ion-label>
+                <ion-input [(ngModel)]="form.userId" name="userId" required></ion-input>
+              </ion-item>
+
+              <!-- Input Tempat -->
+              <ion-item>
+                <ion-label position="stacked">Tempat</ion-label>
+                <ion-input [(ngModel)]="form.tempat" name="tempat" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Guru</ion-label>
+                <ion-input [(ngModel)]="form.guru" name="guru" required></ion-input>
+              </ion-item>
+
+              <!-- Date Picker -->
+              <ion-item>
+                <ion-label position="stacked">Tanggal</ion-label>
+                <ion-datetime
+                  [(ngModel)]="form.tanggal"
+                  name="tanggal"
+                  required>
+                </ion-datetime>
+              </ion-item>
+
+              <!-- Dropdown / SELECT2 -->
+              <ion-item>
+                <ion-label position="stacked">Pilih Item</ion-label>
+                <ion-select
+                  [(ngModel)]="form.selectedItem"
+                  name="selectedItem"
+                  interface="popover"
+                  placeholder="Pilih Item"
+                  required>
+                  <ion-select-option value="11.M1">11.M1</ion-select-option>
+                  <ion-select-option value="11.M2">11.M2</ion-select-option>
+                  <ion-select-option value="11.M3">11.M3</ion-select-option>
+                  <ion-select-option value="11.M4">11.M4</ion-select-option>
+                  <ion-select-option value="11.M5">11.M5</ion-select-option>
+                  <ion-select-option value="11.O">11.O</ion-select-option>
+                  <ion-select-option value="12.M1">12.M1</ion-select-option>
+                  <ion-select-option value="12.M2">12.M2</ion-select-option>
+                  <ion-select-option value="12.M3">12.M3</ion-select-option>
+                  <ion-select-option value="12.O">12.O</ion-select-option>
+                  <ion-select-option value="IK.1">IK.1</ion-select-option>
+                  <ion-select-option value="13.1">13.1</ion-select-option>
+                  <ion-select-option value="13.O">13.O</ion-select-option>
+                  <ion-select-option value="BPS">BPS</ion-select-option>
+                  <ion-select-option value="TDP">TDP</ion-select-option>
+                  <ion-select-option value="EM1">EM1</ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <!-- Textarea for Keterangan -->
+              <ion-item>
+                <ion-label position="stacked">Keterangan</ion-label>
+                <ion-textarea
+                  [(ngModel)]="form.keterangan"
+                  name="keterangan"
+                  rows="4"
+                  required>
+                </ion-textarea>
+              </ion-item>
+
+              <!-- Submit Button -->
+              <ion-button expand="block" type="submit" color="primary">
+                Simpan
+              </ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

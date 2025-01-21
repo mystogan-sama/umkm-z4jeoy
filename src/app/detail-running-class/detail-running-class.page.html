@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Detail Running Class</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/running-class-list']">Done</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngIf="parentData">
+    <ion-card-header>
+      <ion-card-title>{{ parentData.tempat }}</ion-card-title>
+      <ion-card-subtitle>{{ parentData.tanggal | date:'longDate' }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Selected Item:</strong> {{ parentData.selectedItem }}</p>
+      <p><strong>Keterangan:</strong> {{ parentData.keterangan }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="childData.length > 0">
+    <ion-item *ngFor="let child of childData">
+      <ion-label>
+        <h2>{{ child.nama }}</h2>
+        <p>{{ child.keterangan }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="full" (click)="onAddPresence()">Add Presence</ion-button>
+</ion-content>

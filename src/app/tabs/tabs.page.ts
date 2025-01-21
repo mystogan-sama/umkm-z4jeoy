@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { User, getAuth, onAuthStateChanged } from 'firebase/auth';
+import * as firebase from 'firebase/compat';
 
 @Component({
   selector: 'app-tabs',
@@ -6,7 +8,24 @@ import { Component } from '@angular/core';
   styleUrls: ['tabs.page.scss']
 })
 export class TabsPage {
+  localId: string = '';
+  constructor() {
+    const auth = getAuth();
+    const user = auth.currentUser;
 
-  constructor() {}
+    if (user) {
+      this.localId = user.uid;
+    }
+  }
+
+  ngOnInit() {
+    // Misalnya, ambil localId dari Firebase Auth
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user: User | null) => {
+      if (user) {
+        this.localId = user.uid;
+      }
+    });
+  }
 
 }

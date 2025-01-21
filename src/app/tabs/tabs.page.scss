@@ -1,1 +1,8 @@
-
+.fab-center {
+    position: absolute;
+    bottom: 25px; /* Sesuaikan agar FAB berada di atas tab bar */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10; /* Pastikan FAB berada di atas elemen lain */
+  }
+  

@@ -20,6 +20,14 @@ const routes: Routes = [
         loadChildren: () => import('../tab3/tab3.module').then(m => m.Tab3PageModule)
       },
       {
+        path: 'account',
+        loadChildren: () => import('../account/account.module').then( m => m.AccountPageModule)
+      },
+      {
+        path: 'running-class-list',
+        loadChildren: () => import('../running-class-list/running-class-list.module').then( m => m.RunningClassListPageModule)
+      },
+      {
         path: '',
         redirectTo: 'tab1', // Default ke 'tab1' di dalam 'tabs'
         pathMatch: 'full'

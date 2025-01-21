@@ -22,6 +22,26 @@ const routes: Routes = [
   {
     path: 'display',
     loadChildren: () => import('./display/display.module').then( m => m.DisplayPageModule)
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('./account/account.module').then( m => m.AccountPageModule)
+  },
+  {
+    path: 'add-presence',
+    loadChildren: () => import('./add-presence/add-presence.module').then( m => m.AddPresencePageModule)
+  },
+  {
+    path: 'running-class',
+    loadChildren: () => import('./running-class/running-class.module').then( m => m.RunningClassPageModule)
+  },
+  {
+    path: 'detail-running-class',
+    loadChildren: () => import('./detail-running-class/detail-running-class.module').then( m => m.DetailRunningClassPageModule)
+  },
+  {
+    path: 'running-class-list',
+    loadChildren: () => import('./running-class-list/running-class-list.module').then( m => m.RunningClassListPageModule)
   }
 ];
 @NgModule({

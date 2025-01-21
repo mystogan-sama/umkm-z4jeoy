@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { Observable } from 'rxjs';
-import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 
 
 @Injectable({
@@ -21,9 +21,17 @@ export class FirebaseService {
     return this.db.list(path).valueChanges();
   }
 
-  async register(email: string, password: string) {
+  async register(email: string, password: string, displayName: string) {
     try {
-      const userCredential = await createUserWithEmailAndPassword(this.auth, email, password);
+      const auth = getAuth();
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+  
+      // Mengupdate displayName pengguna
+      await updateProfile(userCredential.user, {
+        displayName: displayName,
+      });
+  
+      console.log('User registered with displayName:', displayName);
       return userCredential.user;
     } catch (error) {
       console.error('Error during registration:', error);

@@ -1,21 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Register</ion-title>
+    <ion-title class="ion-text-center">Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label position="floating">Email</ion-label>
-    <ion-input [(ngModel)]="email" type="email"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Password</ion-label>
-    <ion-input [(ngModel)]="password" type="password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="floating">Confirm Password</ion-label>
-    <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
-  </ion-item>
-  <ion-button expand="full" (click)="register()">Register</ion-button>
+  <div class="logo-container">
+    <img src="https://res.cloudinary.com/insabaaset/image/upload/v1736997726/unnamed_fcnrqe.png" alt="App Logo" class="app-logo" />
+  </div>
+
+  <div class="form-container">
+    <ion-item>
+      <ion-label position="stacked">Name</ion-label>
+      <ion-input [(ngModel)]="displayName" type="text"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input [(ngModel)]="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Password</ion-label>
+      <ion-input [(ngModel)]="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Confirm Password</ion-label>
+      <ion-input [(ngModel)]="confirmPassword" type="password"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="register()">Register</ion-button>
+    <div class="already-account">
+      <p>Already have an account?</p>
+      <ion-button fill="clear" color="secondary" routerLink="/login">Login</ion-button>
+    </div>
+  </div>
 </ion-content>

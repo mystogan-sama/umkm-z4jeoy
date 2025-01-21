@@ -1,0 +1,42 @@
+/* Gaya untuk Parent */
+ion-item-group ion-item {
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: #f9f9f9; /* Warna latar belakang parent lebih terang */
+  }
+  
+  /* Gaya untuk tabel child */
+  .child-table-container {
+    margin: 10px 20px; /* Memberi jarak ke kanan dan kiri */
+    overflow-x: auto; /* Menghindari overflow jika tabel terlalu lebar */
+  }
+  
+  .child-table-container table {
+    width: 100%; /* Lebar penuh */
+    border-collapse: collapse; /* Menghapus jarak antar sel */
+    background-color: #e9e9e9; /* Warna latar lebih gelap */
+  }
+  
+  .child-table-container th,
+  .child-table-container td {
+    border: 1px solid #ddd; /* Tambahkan border antar sel */
+    text-align: left; /* Teks rata kiri */
+    padding: 8px; /* Tambahkan padding */
+    font-size: 0.9rem; /* Ukuran font lebih kecil */
+  }
+  
+  /* Gaya header tabel */
+  .child-table-container th {
+    background-color: #d6d6d6; /* Warna header lebih gelap */
+    font-weight: bold; /* Teks tebal */
+  }
+  
+  /* Warna baris */
+  .child-table-container tr:nth-child(even) {
+    background-color: #f3f3f3; /* Baris genap warna lebih terang */
+  }
+  
+  .child-table-container tr:hover {
+    background-color: #d0d0d0; /* Warna saat hover */
+  }
+  

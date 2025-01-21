@@ -63,13 +63,12 @@ ion-item {
 
 .custom-toast {
     --background: var(--ion-color-primary);
-    /* Warna background default */
-    --color: var(--ion-text-color);
-    /* Warna teks sesuai tema */
+    /* Warna latar */
+    --color: white;
+    /* Warna teks */
+}
 
-    /* Atur warna teks saat light mode */
-    :host-context([color-scheme="light"]) & {
-        --color: white;
-        /* Warna teks menjadi putih */
-    }
+:root {
+    --ion-color-success-contrast: #ffffff;
+    /* Ubah warna kontras menjadi putih */
 }
