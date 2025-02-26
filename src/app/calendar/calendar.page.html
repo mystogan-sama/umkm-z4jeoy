@@ -1,9 +1,12 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>To-Do List Bulanan</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="saveTasksToFirebase()">Update</ion-button>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs/tab1"></ion-back-button>
     </ion-buttons>
+    <ion-title>{{ userName || 'To-Do List Bulanan' }}</ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button z>Simpan</ion-button>
+    </ion-buttons> -->
   </ion-toolbar>
 </ion-header>
 
@@ -20,7 +23,7 @@
         <tr *ngFor="let task of tasks">
           <td>{{ task.name }}</td>
           <td *ngFor="let date of dates">
-            <ion-checkbox [(ngModel)]="task.checked[date]"></ion-checkbox>
+            <ion-checkbox [checked]="task.checked[date]" disabled></ion-checkbox>
           </td>
         </tr>
       </tbody>

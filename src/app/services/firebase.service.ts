@@ -21,6 +21,12 @@ export class FirebaseService {
     return this.db.list(path).valueChanges();
   }
 
+  // **🔥 Tambahkan metode update data di sini**
+  updateData(path: string, data: any) {
+    return this.db.object(path).update(data);
+  }
+
+
   async register(email: string, password: string, displayName: string) {
     try {
       const auth = getAuth();
@@ -59,5 +65,9 @@ export class FirebaseService {
       console.error('Error during logout:', error);
       throw error;
     }
+  }
+  
+  getCurrentUser() {
+    return this.auth.currentUser;
   }
 }

@@ -1,27 +1,19 @@
-ion-button#more-options {
-    --padding-start: 0;
-    --padding-end: 0;
-  }
-  
-  ion-menu::part(backdrop) {
-    background-color: rgba(255, 0, 255, 0.5);
-  }
-  
-  ion-menu::part(container) {
-    border-radius: 0 20px 20px 0;
-  
-    box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
-  }
+ion-card {
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+}
 
-.custom-toast {
-    --background: var(--ion-color-primary);
-    /* Warna background default */
-    --color: var(--ion-text-color);
-    /* Warna teks sesuai tema */
+ion-card-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
 
-    /* Atur warna teks saat light mode */
-    :host-context([color-scheme="light"]) & {
-        --text: white;
-        /* Warna teks menjadi putih */
-    }
+ion-card-subtitle {
+  color: gray;
+  font-size: 0.9rem;
+}
+
+ion-card-content p {
+  font-size: 0.9rem;
+  margin: 0;
 }

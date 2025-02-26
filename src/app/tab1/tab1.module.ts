@@ -13,8 +13,7 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
     CommonModule,
     FormsModule,
     ExploreContainerComponentModule,
-    Tab1PageRoutingModule,
-    Tab1Page
+    Tab1PageRoutingModule
   ],
   declarations: []
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
-import { equalTo, get, getDatabase, orderByChild, query, ref, remove } from 'firebase/database';
+import { AlertController, ToastController } from '@ionic/angular';
+import { equalTo, get, getDatabase, onValue, orderByChild, query, ref, remove } from 'firebase/database';
 import { addIcons } from 'ionicons';
 import { archive, heart, trash } from 'ionicons/icons';
 
@@ -12,53 +12,65 @@ import { archive, heart, trash } from 'ionicons/icons';
 })
 export class RunningClassListPage implements OnInit {
   runningClasses: any[] = [];
-  constructor(private router: Router, private alertController: AlertController) {
+  loading = true; // Tampilkan spinner
+
+  constructor(private router: Router, private alertController: AlertController, private toastController: ToastController) {
     addIcons({ archive, heart, trash });
-   }
+  }
 
   ngOnInit() {
     this.fetchRunningClasses();
   }
 
+  // ionViewWillEnter() {
+  //   // Refresh data setiap kali halaman dibuka
+  //   this.fetchRunningClasses();
+  // }
+
   // Mengambil data running-class dan presence
   fetchRunningClasses() {
+    this.loading = true
     const db = getDatabase();
     const runningClassRef = ref(db, 'running-class');
     const presenceRef = ref(db, 'presence');
 
-    get(runningClassRef)
-      .then((snapshot) => {
-        if (snapshot.exists()) {
-          this.runningClasses = [];
-          snapshot.forEach((childSnapshot) => {
-            const data = childSnapshot.val();
-            const parentId = childSnapshot.key;
+    onValue(runningClassRef, (snapshot) => {
+      if (snapshot.exists()) {
+        this.runningClasses = [];
+        snapshot.forEach((childSnapshot) => {
+          const data = childSnapshot.val();
+          const parentId = childSnapshot.key;
+          console.log('Parent ID:', parentId);
 
-            // Tambahkan property expanded untuk toggle child
-            const parentData = { localId: parentId, expanded: false, children: [], ...data };
-
-            // Ambil data child yang sesuai dengan parentId
-            get(presenceRef).then((presenceSnapshot) => {
-              if (presenceSnapshot.exists()) {
-                presenceSnapshot.forEach((presenceChild) => {
-                  const childData = presenceChild.val();
-                  if (childData.parentId === parentId) {
-                    parentData.children.push(childData);
-                  }
-                });
-              }
+          const parentData = { parentId: parentId, expanded: false, children: [], ...data };
+          onValue(presenceRef, (presenceSnapshot) => {
+            if (presenceSnapshot.exists()) {
+              // Reset array children sebelum menambah data baru
+              parentData.children = [];
+              presenceSnapshot.forEach((presenceChild) => {
+                const childData = presenceChild.val();
+                if (childData.parentId === parentId) {
+                  parentData.children.push(childData);
+                }
+              });
+            }
+            // Cek localId sebelum menyimpan ke runningClasses
+            console.log('Parent Data:', parentData);  // Menampilkan data parent (termasuk localId)
+            const existingIndex = this.runningClasses.findIndex((rc) => rc.localId === parentId);
+            if (existingIndex === -1) {
               this.runningClasses.push(parentData);
-            });
+
+            } else {
+            }
+            this.loading = false; // Sembunyikan spinner
           });
-        } else {
-          console.log('Tidak ada data running class');
-          this.runningClasses = [];
-        }
-      })
-      .catch((error) => {
-        console.error('Gagal mengambil data running class:', error);
-      });
+        });
+      } else {
+        this.loading = false; // Sembunyikan spinner
+      }
+    });
   }
+
 
   // Fungsi toggle untuk expand/collapse child
   toggleExpand(parent: any) {
@@ -74,7 +86,8 @@ export class RunningClassListPage implements OnInit {
           text: 'Cancel',
           role: 'cancel',
           handler: () => {
-            console.log('Delete canceled');
+            // console.log('Delete canceled');
+            this.showToast('Data batal dihapus!', 'warning');
           },
         },
         {
@@ -109,20 +122,56 @@ export class RunningClassListPage implements OnInit {
         });
 
         await Promise.all(promises);
-        console.log('Child data dihapus.');
-        console.log('Children to delete:', snapshot.val());
+        // console.log('Child data dihapus.');
+        // console.log('Children to delete:', snapshot.val());
       } else {
-        console.log('No children found for parentId:', parentId);
+        // console.log('No children found for parentId:', parentId);
       }
 
       // Hapus data parent dari 'running-class'
       const runningClassRef = ref(db, `running-class/${parentId}`);
       await remove(runningClassRef);
-      console.log('Parent data dihapus.');
+      // console.log('Parent data dihapus.');
+      this.showToast('Data dihapus!');
       this.fetchRunningClasses();
     } catch (error) {
-      console.error('Gagal menghapus data:', error);
+      // console.error('Gagal menghapus data:', error);
+      this.showToast('Gagal menghapus data:' + String(error), 'danger');
     }
+  }
+
+  async showToast(message: string, color: string = 'success') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: color, // Tambahkan warna toast
+      cssClass: 'custom-toast', // Tambahkan kelas kustom jika diperlukan
+    });
+    await toast.present();
+  }
+
+  navigateToDetail(parent: any) {
+    this.router.navigate(['/detail-running-class'], {
+      queryParams: {
+        parentId: parent.parentId, // Menggunakan localId dari parent
+        selectedItem: parent.selectedItem // Mengirim data selectedItem jika diperlukan
+      },
+    });
+  }
+
+  navigateToEdit(parent: any) {
+    // Navigasi ke halaman running-class dengan mengirimkan localId
+    this.router.navigate(['/update-running-class'], {
+      queryParams: {
+        parentId: parent.parentId,
+        userId: parent.userId,
+        selectedItem: parent.selectedItem,
+        tempat: parent.tempat,
+        guru: parent.guru,
+        tanggal: parent.tanggal,
+        keterangan: parent.keterangan
+      }
+    });
   }
 
 }

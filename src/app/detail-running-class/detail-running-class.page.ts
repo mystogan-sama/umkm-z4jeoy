@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { NavController, ToastController } from '@ionic/angular';
 import { equalTo, get, getDatabase, orderByChild, query, ref } from 'firebase/database';
 
 @Component({
@@ -14,7 +14,7 @@ export class DetailRunningClassPage implements OnInit {
   parentId: string = '';
   selectedItem: string = ''; // Menyimpan selectedItem dari parent
   isLoading: boolean = true; // Untuk menunjukkan loading indicator
-  constructor(private route: ActivatedRoute, private navController: NavController, private router: Router) { }
+  constructor(private route: ActivatedRoute, private navController: NavController, private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
     // Ambil parentId dan selectedItem dari query params
@@ -31,13 +31,13 @@ export class DetailRunningClassPage implements OnInit {
       this.fetchChildData();
     });
   }
-  
+
 
   // Ambil data parent dari Firebase berdasarkan parentId
   fetchParentData() {
     const db = getDatabase();
     const parentRef = ref(db, 'running-class/' + this.parentId);
-    console.log('Fetching parent data with path:', parentRef);
+    // console.log('Fetching parent data with path:', parentRef);
 
     get(parentRef).then(snapshot => {
       if (snapshot.exists()) {
@@ -74,12 +74,32 @@ export class DetailRunningClassPage implements OnInit {
 
   onAddPresence() {
     // Navigasi ke halaman add-presence dengan mengirimkan parentId dan selectedItem
+    if (!this.parentId) {
+      this.showToast('Parent data tidak ditemukan!', 'danger');
+      return;
+    }
+  
     this.router.navigate(['/add-presence'], {
       queryParams: {
         parentId: this.parentId,
-        selectedItem: this.selectedItem
-      }
+        selectedItem: this.selectedItem,
+      },
     });
+  }
+
+  doneButton() {
+    this.router.navigate(['/tabs/running-class-list'])
+    this.showToast('Data Kehadiran Selesai ditambahkan!');
+  }
+
+  async showToast(message: string, color: string = 'success') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: color, // Tambahkan warna toast
+      cssClass: 'custom-toast', // Tambahkan kelas kustom jika diperlukan
+    });
+    await toast.present();
   }
 
 }

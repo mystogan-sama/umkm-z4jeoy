@@ -28,6 +28,10 @@ const routes: Routes = [
         loadChildren: () => import('../running-class-list/running-class-list.module').then( m => m.RunningClassListPageModule)
       },
       {
+        path: 'monitoring',
+        loadChildren: () => import('../monitoring/monitoring.module').then( m => m.MonitoringPageModule)
+      },
+      {
         path: '',
         redirectTo: 'tab1', // Default ke 'tab1' di dalam 'tabs'
         pathMatch: 'full'

@@ -42,6 +42,18 @@ const routes: Routes = [
   {
     path: 'running-class-list',
     loadChildren: () => import('./running-class-list/running-class-list.module').then( m => m.RunningClassListPageModule)
+  },
+  {
+    path: 'update-running-class',
+    loadChildren: () => import('./update-running-class/update-running-class.module').then( m => m.UpdateRunningClassPageModule)
+  },
+  {
+    path: 'calendar',
+    loadChildren: () => import('./calendar/calendar.module').then( m => m.CalendarPageModule)
+  },
+  {
+    path: 'monitoring',
+    loadChildren: () => import('./monitoring/monitoring.module').then( m => m.MonitoringPageModule)
   }
 ];
 @NgModule({

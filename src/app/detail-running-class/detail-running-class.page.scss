@@ -1,0 +1,40 @@
+/* Styling untuk card */
+.custom-card {
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Styling untuk bagian detail */
+  .details {
+    font-size: 1.1em;
+    color: #555;
+  }
+  
+  ion-card-header {
+    background-color: #f8f8f8;
+    padding: 16px;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  /* Styling untuk list child */
+  .custom-list {
+    margin-top: 20px;
+  }
+  
+  ion-item {
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+  
+  ion-item ion-label h2 {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  
+  ion-item ion-label p {
+    font-size: 1em;
+    color: #666;
+  }
+  

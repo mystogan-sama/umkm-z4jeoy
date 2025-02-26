@@ -11,10 +11,12 @@ import { ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   email = '';
   password = '';
+  passwordType: string = 'password';
 
   constructor(private firebaseService: FirebaseService, private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
+    //test
   }
 
   async login() {
@@ -37,5 +39,9 @@ export class LoginPage implements OnInit {
       cssClass: 'custom-toast', // Tambahkan kelas kustom jika diperlukan
     });
     await toast.present();
+  }
+
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
   }
 }

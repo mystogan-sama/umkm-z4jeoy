@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Tambah Data</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/tabs/tab1"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Update Data</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,20 +13,35 @@
       <ion-col>
         <ion-card>
           <ion-card-header>
-            <ion-card-title>Form Tambah Data</ion-card-title>
+            <ion-card-title>Update Kelas Berjalan</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <form (ngSubmit)="onSubmit()">
-              <!-- Input LocalId -->
-              <ion-item>
-                <ion-label position="stacked">Local ID</ion-label>
-                <ion-input [(ngModel)]="form.parentId" name="parentId" required></ion-input>
+              <!-- Input UserId (tidak bisa diubah pada halaman update) -->
+              <ion-item [ngClass]="{ 'hidden': isHidden }">
+                <ion-label position="stacked">User ID</ion-label>
+                <ion-input [(ngModel)]="form.userId" name="userId" required disabled></ion-input>
               </ion-item>
 
-              <!-- Input Nama -->
+              <!-- Input Tempat -->
               <ion-item>
-                <ion-label position="stacked">Nama</ion-label>
-                <ion-input [(ngModel)]="form.nama" name="nama" required></ion-input>
+                <ion-label position="stacked">Tempat</ion-label>
+                <ion-input [(ngModel)]="form.tempat" name="tempat" required></ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label position="stacked">Guru</ion-label>
+                <ion-input [(ngModel)]="form.guru" name="guru" required></ion-input>
+              </ion-item>
+
+              <!-- Date Picker -->
+              <ion-item>
+                <ion-label position="stacked">Tanggal</ion-label>
+                <ion-datetime
+                  [(ngModel)]="form.tanggal"
+                  name="tanggal"
+                  required>
+                </ion-datetime>
               </ion-item>
 
               <!-- Dropdown / SELECT2 -->

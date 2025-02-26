@@ -1,0 +1,19 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Monitoring</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="card-container">
+    <div *ngFor="let user of users" class="user-card" (click)="goToCalendar(user.userId)">
+      <div class="card-image">
+        <img src="https://www.pngkey.com/png/detail/114-1149847_avatar-unknown-dp.png" alt="User Avatar" />
+      </div>
+      <div class="card-content">
+        <h3>{{ user.nama }}</h3>
+        <p>{{ user.email }}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

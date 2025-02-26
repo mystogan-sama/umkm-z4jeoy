@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { getDatabase, push, ref } from 'firebase/database';
 
 @Component({
@@ -11,12 +12,12 @@ export class AddPresencePage implements OnInit {
   parentId: string = ''; // Menyimpan parentId yang dikirim dari halaman detail
   selectedItem: string = ''; // Menyimpan selectedItem yang dikirim dari halaman detail
   form = {
-    localId: '',      // ID Parent yang diterima dari Running Class
+    parentId: '',      // ID Parent yang diterima dari Running Class
     nama: '',
     selectedItem: '',
     keterangan: '',
   };
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private route: ActivatedRoute, private router: Router, private toastController: ToastController) { }
 
   ngOnInit() {
     // Ambil parentId dan selectedItem dari query params
@@ -24,7 +25,7 @@ export class AddPresencePage implements OnInit {
       if (params['parentId']) {
         this.parentId = params['parentId'];
         console.log('Parent ID:', this.parentId);
-        this.form.localId = this.parentId; // Mengisi form.localId dengan parentId
+        this.form.parentId = this.parentId; // Mengisi form.parentId dengan parentId
       }
       if (params['selectedItem']) {
         this.selectedItem = params['selectedItem'];
@@ -38,7 +39,7 @@ export class AddPresencePage implements OnInit {
   // Fungsi untuk menyimpan presence
   async onSubmit() {
     if (
-      this.form.localId &&
+      this.form.parentId &&
       this.form.nama &&
       this.form.selectedItem &&
       this.form.keterangan
@@ -51,29 +52,40 @@ export class AddPresencePage implements OnInit {
         // Push data ke Firebase dan simpan data child
         await push(dataRef, {
           ...this.form,
-          parentId: this.form.localId, // Menyimpan parentId di data child
+          parentId: this.form.parentId, // Menyimpan parentId di data child
           selectedItem: this.form.selectedItem, // Menyimpan selectedItem di data child
         });
 
-        console.log('Data berhasil disimpan!');
-        alert('Data berhasil disimpan!');
+        // console.log('Data berhasil disimpan!');
+        this.showToast('Data berhasil disimpan!');
 
         // Setelah simpan data, arahkan kembali ke halaman detail-running-class
         this.router.navigate(['/detail-running-class'], {
-          queryParams: { 
+          queryParams: {
             parentId: this.parentId,
             selectedItem: this.selectedItem
           }
         });
 
       } catch (error) {
-        console.error('Gagal menyimpan data:', error);
-        alert('Gagal menyimpan data.');
+        // console.error('Gagal menyimpan data:', error);
+        this.showToast('Gagal menyimpan data: ' + String(error), 'danger');
       }
     } else {
-      console.log('Form tidak lengkap.');
-      alert('Mohon lengkapi semua field.');
+      // console.log('Form tidak lengkap.');
+      // alert('Mohon lengkapi semua field.');
+      this.showToast('lengkapi semua field.', 'warning');
     }
+  }
+
+  async showToast(message: string, color: string = 'success') {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      color: color, // Tambahkan warna toast
+      cssClass: 'custom-toast', // Tambahkan kelas kustom jika diperlukan
+    });
+    await toast.present();
   }
 
 }
