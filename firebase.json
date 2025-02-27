@@ -1,8 +1,11 @@
 {
   "hosting": {
-    "site": "monitoring-ramadhan",
     "public": "www",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
-    "rewrites": []
+    "site": "monitoring-ramadhan",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
   }
 }

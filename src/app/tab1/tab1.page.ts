@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { AlertController, IonicModule, MenuController, ToastController } from '@ionic/angular';
 import { FirebaseService } from '../services/firebase.service';
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -15,7 +16,8 @@ import { CommonModule } from '@angular/common';
 })
 export class Tab1Page {
   users: any[] = []; // Array untuk menyimpan daftar user
-  constructor(private menu: MenuController, private router: Router, private firebaseService: FirebaseService, private alertController: AlertController, private toastController: ToastController) { }
+  hijriDate: string = '';
+  constructor(private http: HttpClient, private menu: MenuController, private router: Router, private firebaseService: FirebaseService, private alertController: AlertController, private toastController: ToastController) { }
   closeMenu() {
     this.menu.close();
     this.router.navigate(['/display']);
@@ -23,6 +25,7 @@ export class Tab1Page {
 
   ngOnInit() {
     this.getUsers(); // Panggil fungsi untuk mengambil data user
+    this.getHijriDate();
   }
 
   getUsers() {
@@ -60,7 +63,20 @@ export class Tab1Page {
     });
   }
   
-  
+  getHijriDate() {
+    const today = new Date();
+    const day = today.getDate().toString().padStart(2, '0');
+    const month = (today.getMonth() + 1).toString().padStart(2, '0');
+    const year = today.getFullYear();
+
+    const apiUrl = `https://api.aladhan.com/v1/gToH?date=${day}-${month}-${year}`;
+
+    this.http.get(apiUrl).subscribe((response: any) => {
+      if (response.data && response.data.hijri) {
+        this.hijriDate = `${response.data.hijri.day} ${response.data.hijri.month.en} ${response.data.hijri.year} H`;
+      }
+    });
+  }
 
   async confirmLogout() {
     const alert = await this.alertController.create({
