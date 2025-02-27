@@ -6,3 +6,73 @@
     z-index: 10; /* Pastikan FAB berada di atas elemen lain */
   }
   
+  .transparent-tabbar {
+    position: relative;
+    background: rgba(16, 23, 58, 0.8) !important;
+    box-shadow: none !important;
+    border-top: none !important;
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px;
+    z-index: 1000;
+}
+
+/* Menyesuaikan setiap tab button */
+ion-tab-button {
+    position: relative;
+    flex: 1;
+    text-align: center;
+    transition: color 0.3s ease-in-out;
+    color: rgba(255, 255, 255, 0.6);
+    z-index: 2;
+}
+
+/* Spotlight effect */
+.spotlight {
+    position: absolute;
+    width: 60px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    top: 10px;
+    left: 15px;
+    transition: transform 0.3s ease-in-out;
+    z-index: 1;
+}
+
+/* Animasi spotlight mengikuti tab aktif */
+.transparent-tabbar[data-active="home"] .spotlight {
+    transform: translateX(0%);
+}
+.transparent-tabbar[data-active="monitoring"] .spotlight {
+    transform: translateX(100%);
+}
+.transparent-tabbar[data-active="kegiatan"] .spotlight {
+    transform: translateX(200%);
+}
+.transparent-tabbar[data-active="account"] .spotlight {
+    transform: translateX(300%);
+}
+
+/* Warna ikon saat tab aktif */
+ion-tab-button.tab-selected {
+    color: white !important;
+}
+
+/* Tambahkan efek bayangan di bawah teks */
+ion-tab-button.tab-selected::after {
+    content: "";
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    width: 20px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    transform: translateX(-50%);
+}

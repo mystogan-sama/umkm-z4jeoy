@@ -1,31 +1,101 @@
+ion-content {
+  --background: none !important;
+  background: linear-gradient(to bottom, #5f6caf, #282c4d) !important;
+  min-height: 100vh;
+}
+
 .profile-container {
-    text-align: center;
-    padding: 20px;
-  }
-  
-  .profile-header {
-    margin-bottom: 20px;
-  }
-  
-  .profile-avatar {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 10px;
-  }
-  
-  .profile-name {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .profile-email {
-    color: gray;
-    font-size: 1rem;
-    margin: 5px 0;
-  }
-  
-  .account-options {
-    margin-top: 20px;
-  }
-  
+  text-align: center;
+  padding: 20px;
+  padding-top: 170px;
+}
+
+.profile-header {
+  margin-bottom: 20px;
+}
+
+.profile-avatar {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 10px;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.profile-name {
+  font-size: 1.8rem;
+  color: white;
+  font-weight: bold;
+  margin: 0;
+}
+
+.profile-email {
+  color: #dcdcdc;
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.account-options {
+  margin-top: 20px;
+  background: rgba(255, 255, 255, 0.1); /* Warna semi-transparan agar menyatu */
+  border-radius: 12px; /* Sudut membulat */
+  padding: 5px;
+  backdrop-filter: blur(5px); /* Efek blur agar lebih smooth */
+}
+
+ion-item {
+  border-radius: 10px; /* Setiap item membulat */
+  margin: 5px 10px; /* Spasi antar item */
+  background: rgba(255, 255, 255, 0.2); /* Warna semi-transparan */
+  transition: background 0.3s ease-in-out;
+}
+
+ion-item:hover {
+  background: rgba(255, 255, 255, 0.3); /* Warna lebih cerah saat hover */
+}
+
+ion-icon {
+  color: rgb(0, 0, 0); /* Warna ikon agar lebih kontras */
+}
+
+ion-label {
+  color: rgba(255, 255, 255, 0); /* Warna teks */
+}
+
+.custom-header {
+  background: transparent;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.header-content h3 {
+  flex-grow: 1;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: bold;
+  font-family: 'Fira Code', monospace;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.header-md {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.custom-content {
+  padding-top: 220px;
+}

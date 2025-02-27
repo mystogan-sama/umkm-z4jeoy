@@ -1,56 +1,109 @@
+ion-content {
+  --background: none !important;
+  background: linear-gradient(to bottom, #5f6caf, #282c4d) !important;
+  min-height: 100vh;
+}
+
+.custom-header {
+  background: transparent;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.header-content h3 {
+  flex-grow: 1; /* Memungkinkan teks di tengah */
+  text-align: center;
+  margin: 0;
+  font-size: 1.5rem; /* Ukuran lebih besar */
+  font-weight: bold; /* Lebih tegas */
+  font-family: 'Fira Code', monospace; /* Font modern */
+  letter-spacing: 1px; /* Sedikit spasi antar huruf */
+  text-transform: uppercase; /* Supaya lebih rapi */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* Efek shadow halus */
+}
+
+
+.header-md {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+
+.search-icon {
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+}
+
+.custom-content {
+  padding-top: 120px;
+  /* Tambahkan jarak dari header */
+}
+
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 10px;
-  }
-  
-  .user-card {
-    width: 100px;
-    height: 160px;
-    background: linear-gradient(to bottom, #5a9cff, #3b72ff);
-    border-radius: 15px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    text-align: center;
-    padding: 15px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .user-card:hover {
-    transform: translateY(-5px);
-  }
-  
-  .card-image {
-    width: 70px;
-    height: 70px;
-    background: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  }
-  
-  .card-image img {
-    width: 100%;
-    height: auto;
-    border-radius: 50%;
-  }
-  
-  .card-content h3 {
-    font-size: 1rem;
-    color: white;
-    font-weight: bold;
-    margin: 5px 0;
-  }
-  
-  .card-content p {
-    font-size: 0.8rem;
-    color: #f0f0f0;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px;
+  padding-top: 170px;
+  /* Tambahkan jarak dari header */
+}
+
+.user-card {
+  width: 100px;
+  height: 160px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  text-align: center;
+  padding: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+}
+
+.card-image {
+  width: 70px;
+  height: 70px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+}
+
+.card-content h3 {
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+  margin: 5px 0;
+}
+
+.card-content p {
+  font-size: 0.8rem;
+  color: #f0f0f0;
+}

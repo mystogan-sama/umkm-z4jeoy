@@ -1,13 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>To-Do List Bulanan</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="saveTasksToFirebase()">Update</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
+<ion-header class="custom-header">
+  <div class="header-content">
+    <h3>To-do List</h3>
+    <ion-icon name="save-outline" class="update-icon" (click)="saveTasksToFirebase()"></ion-icon>
+  </div>
 </ion-header>
 
-<ion-content>
+<ion-content class="custom-content">
   <div class="table-container">
     <table>
       <thead>
@@ -27,4 +25,3 @@
     </table>
   </div>
 </ion-content>
-

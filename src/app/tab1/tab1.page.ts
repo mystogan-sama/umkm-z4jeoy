@@ -27,15 +27,15 @@ export class Tab1Page {
 
   getUsers() {
     this.firebaseService.getData('kegiatan').subscribe((data: any) => {
-      console.log(data[0][0].userId); // Debugging untuk memeriksa struktur data
-      console.log(data[0][0]); // Debugging untuk memeriksa struktur data
-      console.log(data[0][0].tasks); // Debugging untuk memeriksa struktur data
+      // console.log(data[0][0].userId); // Debugging untuk memeriksa struktur data
+      // console.log(data[0][0]); // Debugging untuk memeriksa struktur data
+      // console.log(data[0][0].tasks); // Debugging untuk memeriksa struktur data
     
       if (data && typeof data === 'object') {
         this.users = Object.keys(data).map(id => {
           // Ambil data user dari array pertama untuk user tertentu
           const userData = data[id][0]; // Ambil data pertama di setiap user
-          console.log('sana', userData);
+          // console.log('sana', userData);
     
           // Mendapatkan nama pengguna
           const nama = userData?.nama || 'Unknown';
@@ -43,7 +43,7 @@ export class Tab1Page {
     
           // Mendapatkan task pertama yang terkait dengan user
           const tasks = data[0][0] || {}; // Ambil task pertama, atau objek kosong jika tidak ada
-          console.log('sini', tasks);
+          // console.log('sini', tasks);
           
           return {
             id: id,  // ID pengguna Firebase (sebenarnya bisa berupa IlMZaHwTCLhyQupOP8DafXzfhrs2)

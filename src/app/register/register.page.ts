@@ -14,6 +14,8 @@ export class RegisterPage implements OnInit {
   password = '';
   confirmPassword = '';
   displayName = '';
+  passwordType: string = 'password';
+  confirmPasswordType: string = 'password';
   
   constructor(private firebaseService: FirebaseService, private router: Router, private toastController: ToastController) { }
 
@@ -52,6 +54,14 @@ export class RegisterPage implements OnInit {
       cssClass: 'custom-toast', // Tambahkan kelas kustom jika diperlukan
     });
     await toast.present();
+  }
+
+  togglePasswordVisibility() {
+    this.passwordType = this.passwordType === 'password' ? 'text' : 'password';
+  }
+
+  toggleConfirmPasswordVisibility() {
+    this.confirmPasswordType = this.confirmPasswordType === 'password' ? 'text' : 'password';
   }
 
 }

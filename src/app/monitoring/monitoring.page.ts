@@ -61,4 +61,10 @@ export class MonitoringPage implements OnInit {
     }
   }
 
+  search() {
+    console.log("Tombol search diklik!");
+    // Tambahkan logika pencarian di sini
+  }
+  
+
 }

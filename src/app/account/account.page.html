@@ -1,13 +1,14 @@
-<ion-header [translucent]="true">
-  <ion-toolbar color="primary">
-    <ion-title>My Account</ion-title>
-  </ion-toolbar>
+<ion-header class="custom-header">
+  <div class="header-content">
+    <h3>MY ACCOUNT</h3>
+  </div>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="custom-content">
   <div class="profile-container">
     <div class="profile-header">
       <ion-avatar class="profile-avatar">
+        <div class="profile-bg"></div> <!-- Tambahkan div untuk background -->
         <img src="https://res.cloudinary.com/insabaaset/image/upload/v1737093839/abu_Ubaidah_qmagms.jpg" alt="Profile Picture" />
       </ion-avatar>
       <h2 class="profile-name">{{ displayName || 'Guest' }}</h2>

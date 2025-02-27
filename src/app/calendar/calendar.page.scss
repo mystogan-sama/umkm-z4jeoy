@@ -14,11 +14,70 @@
   display: none;
 }
 
+ion-content {
+  --background: none !important;
+  background: linear-gradient(to bottom, #5f6caf, #282c4d) !important;
+  min-height: 100vh;
+}
+
+.custom-header {
+  background: transparent;
+  padding: 20px;
+  position: fixed; /* Tetap di atas */
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between; /* Elemen di ujung kiri & kanan */
+  align-items: center;
+  color: white;
+  font-size: 1.5rem;
+  width: 100%;
+  padding: 0 20px;
+}
+
+.header-content h1 {
+  flex-grow: 1; /* Memungkinkan teks di tengah */
+  text-align: center;
+  margin: 0;
+}
+
+
+.header-md {
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.custom-content {
+  margin-top: 70px; /* Sesuaikan dengan tinggi header */
+  padding: 15px;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 10px;
+  white-space: nowrap;
+  scrollbar-width: none;
+  border-radius: 10px; /* Sudut membulat */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+  background: transparent !important;
+}
+
+.table-container::-webkit-scrollbar {
+  display: none;
+}
+
 table {
   width: max-content;
   border-collapse: collapse;
   border-radius: 10px;
   overflow: hidden;
+  margin-top: 120px;
 }
 
 th, td {
@@ -36,18 +95,18 @@ th {
   padding: 12px;
 }
 
-tr:nth-child(even) {
-  background-color: #f9f9f9; /* Warna belang setiap baris genap */
-}
+// tr:nth-child(even) {
+//   background-color: #f9f9f9; /* Warna belang setiap baris genap */
+// }
 
-tr:hover {
-  background-color: #f1f1f1; /* Efek hover */
-  transform: scale(1.02); /* Sedikit membesar */
-}
+// tr:hover {
+//   background-color: #f1f1f1; /* Efek hover */
+//   transform: scale(1.02); /* Sedikit membesar */
+// }
 
 td {
   font-size: 14px;
-  color: #333;
+  color: #ffffff;
 }
 
 ion-checkbox {

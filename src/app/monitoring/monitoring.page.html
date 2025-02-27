@@ -1,10 +1,11 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Monitoring</ion-title>
-  </ion-toolbar>
+<ion-header class="custom-header">
+  <div class="header-content">
+    <h3>MONITORING</h3>
+    <ion-icon name="search-outline" class="search-icon" (click)="search()"></ion-icon>
+  </div>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content class="custom-content">
   <div class="card-container">
     <div *ngFor="let user of users" class="user-card" (click)="goToCalendar(user.userId)">
       <div class="card-image">

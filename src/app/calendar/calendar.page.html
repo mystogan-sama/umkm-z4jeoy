@@ -1,16 +1,13 @@
-<ion-header>
-  <ion-toolbar>
+<ion-header class="custom-header">
+  <div class="header-content">
     <ion-buttons slot="start">
       <ion-back-button default-href="/tabs/tab1"></ion-back-button>
     </ion-buttons>
-    <ion-title>{{ userName || 'To-Do List Bulanan' }}</ion-title>
-    <!-- <ion-buttons slot="end">
-      <ion-button z>Simpan</ion-button>
-    </ion-buttons> -->
-  </ion-toolbar>
+    <h1>{{ userName || 'To-Do List Bulanan' }}</h1>
+  </div>
 </ion-header>
 
-<ion-content>
+<ion-content class="custom-content">
   <div class="table-container">
     <table>
       <thead>
